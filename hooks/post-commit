@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Log commit details to a file
+commit_message=$(git log -1 --pretty=format:"%h - %s (%an)")
+echo "Commit made: $commit_message" >> commit_log.txt
+
+exit 0

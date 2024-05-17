@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Get all staged JavaScript files
+files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.js$')
+
+if [ "$files" != "" ]; then
+  # Run ESLint on all staged JavaScript files
+  npx eslint $files
+  if [ $? -ne 0 ]; then
+    echo "ESLint checks failed. Please fix the issues before committing."
+    exit 1
+  fi
+fi
+
+exit 0
